@@ -1,0 +1,28 @@
+{
+  "name": "dance-match",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write './{pages,components,styles}/**/*.{ts,tsx,css}'"
+  },
+  "dependencies": {
+    "@heroicons/react": "^1.0.1",
+    "next": "11.0.0",
+    "prettier": "^2.3.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.11",
+    "autoprefixer": "^10.2.6",
+    "eslint": "7.28.0",
+    "eslint-config-next": "11.0.0",
+    "postcss": "^8.2.13",
+    "tailwindcss": "^2.1.4",
+    "typescript": "4.3.2"
+  }
+}
