@@ -1,34 +1,37 @@
-import { InferGetServerSidePropsType } from 'next';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
+import { fetchFromApi } from '../../utils';
 import { DanceStyle } from '../api/dance';
 
-const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Home = () => {
+  const [dances, setDances] = useState([] as DanceStyle[]);
+  const { data, error, loading } = fetchFromApi('/api/dance');
+
+  useEffect(() => {
+    data && setDances(data);
+    error && console.error(error);
+  }, [data, error]);
+
   return (
     <Layout>
       <main>
         <div className='text-4xl'>All Dances:</div>
-        <div className='flex justify-center'>
-          <ul>
-            {data.map((opt) => (
-              <li key={opt.id}>{opt.name}</li>
-            ))}
-          </ul>
+        <div>
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <ul>
+              {dances.map((dance) => (
+                <li key={dance.id}>
+                  {dance.name} - {dance.avgBpm} avg BPM
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </main>
     </Layout>
   );
-};
-
-export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/dance');
-  const data: DanceStyle[] = await res.json();
-
-  return {
-    props: {
-      data,
-    },
-  };
 };
 
 export default Home;
