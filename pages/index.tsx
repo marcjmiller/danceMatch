@@ -17,8 +17,8 @@ const Home = () => {
   return (
     <Layout>
       <main className='flex flex-col items-center'>
-        <div className='text-4xl'>Welcome to DanceMatch!</div>
-        <div className='flex justify-center'>
+        <div className='text-4xl text-center'>Welcome to DanceMatch!</div>
+        <div className='flex flex-wrap justify-center'>
           To get started, pick a dance:{' '}
           <select
             onChange={(event) => router.push(`/dances/${+event.target.value - 1}`)}

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
-import { fetchFromApi, getDanceSpeed, useFetch } from '../../utils';
+import { fetchFromApi, getDanceSpeed } from '../../utils';
 import { styles } from '../api/dance';
 import { Song } from '../api/song';
 

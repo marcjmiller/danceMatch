@@ -7,14 +7,17 @@ const Header = () => {
   console.log(router.asPath);
   return (
     <div className='flex items-center justify-between w-full h-16'>
-      <div className='w-16 p-2'>
-        <MenuIcon className='w-8' />
+      <div className='w-16 p-2 m-2'>
+        <MenuIcon className='w-8 m-auto' />
       </div>
       <div className='text-xl'>DanceMatch</div>
       {router.asPath === '/' ? (
-        <div className='w-16 p-2 spacer' />
+        <div className='w-16 p-2 m-2 spacer' />
       ) : (
-        <div className='w-16 p-2 text-center cursor-pointer' onClick={() => router.back()}>
+        <div
+          className='w-16 p-2 m-2 text-center border border-black rounded-lg cursor-pointer'
+          onClick={() => router.back()}
+        >
           Back
         </div>
       )}
