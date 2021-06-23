@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Song, songList } from '.';
+import { Song } from '.';
 
 const songsByStyle = (req: NextApiRequest, res: NextApiResponse<Song[]>) => {
   const { style } = req.query;
   let filteredSongs: Song[] = [];
 
-  if (style) {
-    filteredSongs = songList.filter((song) => song.styles.includes(+style[0]));
-  }
+  // if (style) {
+  //   filteredSongs = songList.filter((song) => song.styles.includes(+style[0]));
+  // }
 
   res.status(200).json(filteredSongs);
 };

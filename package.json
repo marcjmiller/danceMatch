@@ -7,14 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write './{pages,components,styles}/**/*.{ts,tsx,css}'"
+    "format": "prettier --write './{pages,components,styles}/**/*.{ts,tsx,css}'",
+    "migrate": "node scripts/migrate.js"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.1",
+    "dotenv": "^10.0.0",
     "next": "11.0.0",
     "prettier": "^2.3.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "serverless-mysql": "^1.5.4",
     "swr": "^0.5.6"
   },
   "devDependencies": {

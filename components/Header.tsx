@@ -1,14 +1,21 @@
-import React from 'react';
-import { MenuIcon } from '@heroicons/react/solid';
+import React, { useState } from 'react';
+import { MenuIcon, XIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/dist/client/router';
+import Nav from './Nav';
 
 const Header = () => {
   const router = useRouter();
-  console.log(router.asPath);
+  const [navOpen, setNavOpen] = useState(false);
+
   return (
     <div className='flex items-center justify-between w-full h-16'>
       <div className='w-16 p-2 m-2'>
-        <MenuIcon className='w-8 m-auto' />
+        {navOpen ? (
+          <XIcon className='w-8 m-auto cursor-pointer' onClick={() => setNavOpen(!navOpen)} />
+        ) : (
+          <MenuIcon className='w-8 m-auto cursor-pointer' onClick={() => setNavOpen(!navOpen)} />
+        )}
+        {navOpen && <Nav />}
       </div>
       <div className='text-xl'>DanceMatch</div>
       {router.asPath === '/' ? (
@@ -16,9 +23,9 @@ const Header = () => {
       ) : (
         <div
           className='w-16 p-2 m-2 text-center border border-black rounded-lg cursor-pointer'
-          onClick={() => router.back()}
+          onClick={() => router.push('/')}
         >
-          Back
+          Home
         </div>
       )}
     </div>

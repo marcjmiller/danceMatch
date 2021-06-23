@@ -5,7 +5,7 @@ import Header from './Header';
 
 const Layout: FC = ({ children }) => {
   return (
-    <div className='flex flex-col items-center justify-between !h-screen w-full'>
+    <div className='flex flex-col items-center justify-between w-full h-screen'>
       <Head>
         <title>DanceMatch - Find a dance for your music!</title>
         <link rel='icon' href='/favicon.ico' />

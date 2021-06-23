@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { DanceStyle } from '../pages/api/dance';
+import { DanceStyle } from '../pages/api/style';
 
 export const fetchFromApi = (path: string) => {
   const {data, error} = useSWR(path, fetcher);
@@ -9,9 +9,9 @@ export const fetchFromApi = (path: string) => {
 }
 
 export const getDanceSpeed = (bpm: number, dance: DanceStyle) => {
-  if (bpm < dance.avgBpm - dance.variance) {
+  if (bpm < dance.avg_bpm - dance.variance) {
     return `Slow ${dance.name}`;
-  } else if (bpm > dance.avgBpm + dance.variance) {
+  } else if (bpm > dance.avg_bpm + dance.variance) {
     return `Fast ${dance.name}`;
   }
   return `Average ${dance.name}`;

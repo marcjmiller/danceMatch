@@ -2,12 +2,12 @@ import { useRouter } from 'next/dist/client/router';
 import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { fetchFromApi } from '../utils';
-import { DanceStyle } from './api/dance';
+import { DanceStyle } from './api/style';
 
 const Home = () => {
   const router = useRouter();
   const [dances, setDances] = useState([] as DanceStyle[]);
-  const { data, error, loading } = fetchFromApi('/api/dance');
+  const { data, error, loading } = fetchFromApi('/api/style');
 
   useEffect(() => {
     data && setDances(data);
@@ -19,9 +19,9 @@ const Home = () => {
       <main className='flex flex-col items-center'>
         <div className='text-4xl text-center'>Welcome to DanceMatch!</div>
         <div className='flex flex-wrap justify-center'>
-          To get started, pick a dance:{' '}
+          To get started, pick a style:{' '}
           <select
-            onChange={(event) => router.push(`/dances/${+event.target.value - 1}`)}
+            onChange={({ target: { value } }) => router.push(`/styles/${value}`)}
             required
             className='ml-2 border border-black rounded'
             defaultValue=''

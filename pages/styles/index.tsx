@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
 import { fetchFromApi } from '../../utils';
-import { DanceStyle } from '../api/dance';
+import { DanceStyle } from '../api/style';
 
-const Home = () => {
+const GetAllDances = () => {
   const [dances, setDances] = useState([] as DanceStyle[]);
-  const { data, error, loading } = fetchFromApi('/api/dance');
+  const { data, error, loading } = fetchFromApi('/api/style');
 
   useEffect(() => {
     data && setDances(data);
     error && console.error(error);
   }, [data, error]);
+
+  const getDanceInfo = (dance: DanceStyle) => {
+    const minBpm = Number(dance.avg_bpm) - Number(dance.variance);
+    const maxBpm = Number(dance.avg_bpm) + Number(dance.variance);
+
+    return `${dance.name} - ${minBpm}-${maxBpm} BPM, ${dance.avg_bpm} Average BPM`;
+  };
 
   return (
     <Layout>
@@ -22,9 +29,7 @@ const Home = () => {
           ) : (
             <ul>
               {dances.map((dance) => (
-                <li key={dance.id}>
-                  {dance.name} - {dance.avgBpm} avg BPM
-                </li>
+                <li key={dance.id}>{getDanceInfo(dance)}</li>
               ))}
             </ul>
           )}
@@ -34,4 +39,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default GetAllDances;

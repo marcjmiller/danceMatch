@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { query } from '../../../lib/db';
 
 export interface Song {
   id: number;
@@ -8,14 +9,15 @@ export interface Song {
   styles: number[];
 }
 
-export const songList: Song[] = [
-  { id: 1, artist: 'Maroon 5', name: 'Sugar', tempo: 120, styles: [1, 3, 5, 10] },
-  { id: 2, artist: 'Train', name: 'Marry Me', tempo: 87, styles: [9, 10] },
-  { id: 3, artist: 'Camila Cabello', name: 'Liar', tempo: 98, styles: [1, 6, 10] },
-];
-
-const songResolver = (req: NextApiRequest, res: NextApiResponse<Song[]>) => {
-  res.status(200).json(songList);
+const songResolver = async (_req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    await query(`
+      SELECT * FROM songs;
+    `).then((results) => res.status(200).json(results));
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+  }
 };
 
 export default songResolver;

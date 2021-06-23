@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 import { fetchFromApi } from '../../utils';
 import { Song } from '../api/song';
 
-const Home = () => {
+const GetAllSongs = () => {
   const [songs, setSongs] = useState([] as Song[]);
   const { data, error, loading } = fetchFromApi('/api/song');
 
@@ -32,4 +32,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default GetAllSongs;
