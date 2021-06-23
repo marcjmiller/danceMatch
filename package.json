@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "cypress": "cypress run",
+    "test": "PORT=3030 start-server-and-test dev 3030 cypress",
     "format": "prettier --write './{pages,components,styles}/**/*.{ts,tsx,css}'",
-    "migrate": "node scripts/migrate.js"
+    "migrate": "node lib/migrate.js"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.1",
@@ -23,9 +25,11 @@
   "devDependencies": {
     "@types/react": "17.0.11",
     "autoprefixer": "^10.2.6",
+    "cypress": "^7.5.0",
     "eslint": "7.28.0",
     "eslint-config-next": "11.0.0",
     "postcss": "^8.2.13",
+    "start-server-and-test": "^1.12.5",
     "tailwindcss": "^2.1.4",
     "typescript": "4.3.2"
   }

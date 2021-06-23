@@ -33,7 +33,7 @@ const AddStyle = () => {
 
   return (
     <Layout>
-      <main className='flex flex-col items-center w-1/4' onKeyDown={(e) => e.key === 'Enter' && handleSubmitDance}>
+      <main className='flex flex-col items-center w-auto' onKeyDown={(e) => e.key === 'Enter' && handleSubmitDance}>
         <div className='text-2xl'>Add a Style:</div>
         <div className='flex items-center justify-between w-full py-2'>
           <label htmlFor='name'>Name: </label>

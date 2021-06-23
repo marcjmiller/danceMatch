@@ -9,7 +9,7 @@ export interface Song {
   styles: number[];
 }
 
-const songResolver = async (_req: NextApiRequest, res: NextApiResponse) => {
+const getAllSongs = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     await query(`
       SELECT * FROM songs;
@@ -20,4 +20,4 @@ const songResolver = async (_req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default songResolver;
+export default getAllSongs;
