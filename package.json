@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cypress": "cypress run",
-    "test": "PORT=3030 start-server-and-test dev 3030 cypress",
-    "format": "prettier --write './{pages,components,styles}/**/*.{ts,tsx,css}'",
+    "cy": "cypress run",
+    "cy:open": "cypress open",
+    "test": "PORT=3030 start-server-and-test dev 3030 cy",
+    "test:cy": "PORT=3030 start-server-and-test dev 3030 cy:open",
+    "format": "prettier --write './{cypress,lib,pages,components,styles,utils}/**/*.{js,json,ts,tsx,css}'",
     "migrate": "node lib/migrate.js"
   },
   "dependencies": {

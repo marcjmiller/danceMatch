@@ -15,7 +15,7 @@ context('Home/Layout', () => {
     cy.get('.navMenu').contains(/add a song/i);
     cy.get('.navMenu').contains(/song search/i);
     cy.get('.header').find('.nav').click();
- 
+
     cy.get('.header>.title').contains(/dancematch/i);
   });
 
