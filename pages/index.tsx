@@ -19,11 +19,11 @@ const Home = () => {
       <main className='flex flex-col items-center'>
         <div className='text-4xl text-center'>Welcome to DanceMatch!</div>
         <div className='flex flex-wrap justify-center'>
-          To get started, pick a style:{' '}
+          <label>To get started, pick a style: </label>
           <select
             onChange={({ target: { value } }) => router.push(`/styles/${value}`)}
             required
-            className='ml-2 border border-black rounded'
+            className='ml-2 border border-black rounded w-44'
             defaultValue=''
           >
             <option value='' hidden disabled>

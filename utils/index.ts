@@ -2,11 +2,11 @@ import useSWR from 'swr';
 import { DanceStyle } from '../pages/api/style';
 
 export const fetchFromApi = (path: string) => {
-  const {data, error} = useSWR(path, fetcher);
+  const { data, error } = useSWR(path, fetcher);
   const loading = !data && !error;
 
-  return {data, error, loading}
-}
+  return { data, error, loading };
+};
 
 export const getDanceSpeed = (bpm: number, dance: DanceStyle) => {
   if (bpm < dance.avg_bpm - dance.variance) {

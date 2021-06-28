@@ -8,8 +8,8 @@ const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   return (
-    <div className='flex items-center justify-between w-full h-16'>
-      <div className='w-16 p-2 m-2'>
+    <div className='flex items-center justify-between w-full h-16 header'>
+      <div className='w-16 p-2 m-2 nav'>
         {navOpen ? (
           <XIcon className='w-8 m-auto cursor-pointer' onClick={() => setNavOpen(!navOpen)} />
         ) : (
@@ -17,7 +17,7 @@ const Header = () => {
         )}
         {navOpen && <Nav />}
       </div>
-      <div className='text-xl'>DanceMatch</div>
+      <div className='text-xl title'>DanceMatch</div>
       {router.asPath === '/' ? (
         <div className='w-16 p-2 m-2 spacer' />
       ) : (
