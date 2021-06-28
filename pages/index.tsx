@@ -21,7 +21,7 @@ const Home = () => {
         <div className='flex flex-wrap justify-center'>
           <label>To get started, pick a style: </label>
           <select
-            onChange={({ target: { value } }) => router.push(`/styles/${value}`)}
+            onChange={({ target: { value } }) => router.push(`/songs/byStyle/${value}`)}
             required
             className='ml-2 border border-black rounded w-44'
             defaultValue=''

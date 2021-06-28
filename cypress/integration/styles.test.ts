@@ -8,7 +8,7 @@ context('Styles', () => {
   });
 
   it('should fetch a list of styles', () => {
-    cy.get('.header').contains(/home/i)
+    cy.get('.header').contains(/home/i);
     cy.get('main').contains(/all dances/i);
 
     cy.get('li').contains(/exotic style/i);

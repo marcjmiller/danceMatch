@@ -1,10 +1,10 @@
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
-import Spinner from '../../components/icons/Spinner';
-import Layout from '../../components/Layout';
-import { fetchFromApi, getDanceSpeed } from '../../utils';
-import { DanceStyle } from '../api/style';
-import { Song } from '../api/song';
+import Spinner from '../../../components/icons/Spinner';
+import Layout from '../../../components/Layout';
+import { fetchFromApi, getDanceSpeed } from '../../../utils';
+import { Song } from '../../api/song';
+import { DanceStyle } from '../../api/style';
 
 const SongsById = () => {
   const router = useRouter();
