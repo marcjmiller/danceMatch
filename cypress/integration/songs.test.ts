@@ -8,7 +8,7 @@ context('Songs', () => {
   });
 
   it('should fetch a list of songs', () => {
-    cy.get('.header').contains(/home/i)
+    cy.get('.header').contains(/home/i);
     cy.get('main').contains(/all songs/i);
 
     cy.get('li').contains(/maroon 55 - sfugar/i);
