@@ -8,7 +8,7 @@ export interface DanceStyle {
   variance: number;
 }
 
-const danceResolver = async (_req: NextApiRequest, res: NextApiResponse) => {
+const getAllStyles = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     await query(`
     SELECT * FROM styles;
@@ -19,4 +19,4 @@ const danceResolver = async (_req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default danceResolver;
+export default getAllStyles;
