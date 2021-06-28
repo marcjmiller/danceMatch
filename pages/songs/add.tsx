@@ -7,6 +7,7 @@ const AddSong = () => {
   const [name, setName] = useState('');
   const [tempo, setTempo] = useState(0);
   const [submitting, setSubmitting] = useState(false);
+  const isFormValid = artist !== '' && name !== '' && tempo > 0;
 
   const resetForm = () => {
     setArtist('');
@@ -15,19 +16,21 @@ const AddSong = () => {
   };
 
   const handleSubmitSong = async () => {
-    setSubmitting(true);
-    try {
-      const res = await fetch('/api/song/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ artist, name, tempo }),
-      });
-      setSubmitting(false);
-      if (res.ok) {
-        resetForm();
+    if (isFormValid) {
+      setSubmitting(true);
+      try {
+        const res = await fetch('/api/song/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ artist, name, tempo }),
+        });
+        setSubmitting(false);
+        if (res.ok) {
+          resetForm();
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 
