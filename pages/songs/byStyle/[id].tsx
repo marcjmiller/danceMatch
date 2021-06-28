@@ -30,13 +30,15 @@ const SongsById = () => {
             {songLoading || styleLoading ? (
               <Spinner />
             ) : (
-              <div className='text-xl'>Here are some songs matching {style.name}:</div>
+              style && <div className='text-xl'>Here are some songs matching {style.name}:</div>
             )}
-            {foundSongs ? (
+            {foundSongs && style ? (
               <div className=''>
-                {songs.map((song, idx) => (
-                  <div key={idx}>{`${song.artist} - ${song.name} - ${getDanceSpeed(song.tempo, style)}`}</div>
-                ))}
+                <ul>
+                  {songs.map((song, idx) => (
+                    <li key={idx}>{`${song.artist} - ${song.name} - ${getDanceSpeed(song.tempo, style)}`}</li>
+                  ))}
+                </ul>
               </div>
             ) : (
               <div>No songs found!</div>
