@@ -39,7 +39,7 @@ const AddStyle = () => {
           <label htmlFor='name'>Name: </label>
           <input
             id='name'
-            className='p-1 border border-black rounded'
+            className='input'
             placeholder='Name'
             value={name}
             onChange={({ target: { value } }) => setName(value.toString())}
@@ -51,7 +51,7 @@ const AddStyle = () => {
           <input
             id='bpm'
             type='number'
-            className='p-1 border border-black rounded'
+            className='input'
             value={avgBpm}
             onChange={({ target: { value } }) => setAvgBpm(+value)}
           />
@@ -61,7 +61,7 @@ const AddStyle = () => {
           <input
             id='variance'
             type='number'
-            className='p-1 border border-black rounded'
+            className='input'
             value={variance}
             onChange={({ target: { value } }) => setVariance(+value)}
           />

@@ -41,7 +41,7 @@ const SongsById = () => {
                 </ul>
               </div>
             ) : (
-              <div>No songs found!</div>
+              !songLoading && <div>No songs found!</div>
             )}
           </div>
         </div>

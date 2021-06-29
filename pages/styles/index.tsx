@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Spinner from '../../components/icons/Spinner';
 import Layout from '../../components/Layout';
 import { fetchFromApi } from '../../utils';
 import { DanceStyle } from '../api/style';
@@ -25,7 +26,7 @@ const GetAllDances = () => {
         <div className='text-4xl'>All Dances:</div>
         <div>
           {loading ? (
-            <div>Loading...</div>
+            <Spinner />
           ) : (
             <ul>
               {dances.map((dance) => (

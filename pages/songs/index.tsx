@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Spinner from '../../components/icons/Spinner';
 import Layout from '../../components/Layout';
 import { fetchFromApi } from '../../utils';
 import { Song } from '../api/song';
@@ -18,7 +19,7 @@ const GetAllSongs = () => {
         <div className='text-4xl'>All Songs:</div>
         <div className='flex justify-center'>
           {loading ? (
-            <span>loading</span>
+            <Spinner />
           ) : (
             <ul>
               {songs.map((song) => (

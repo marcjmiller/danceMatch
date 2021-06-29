@@ -42,7 +42,7 @@ const AddSong = () => {
           <label htmlFor='artist'>Artist: </label>
           <input
             id='artist'
-            className='p-1 border border-black rounded'
+            className='input'
             placeholder='Artist'
             value={artist}
             onChange={({ target: { value } }) => setArtist(value)}
@@ -53,7 +53,7 @@ const AddSong = () => {
           <label htmlFor='name'>Name: </label>
           <input
             id='name'
-            className='p-1 border border-black rounded'
+            className='input'
             placeholder='Name'
             value={name}
             onChange={({ target: { value } }) => setName(value)}
@@ -64,7 +64,7 @@ const AddSong = () => {
           <input
             id='tempo'
             type='number'
-            className='p-1 border border-black rounded'
+            className='input'
             value={tempo}
             onChange={({ target: { value } }) => setTempo(+value)}
           />
