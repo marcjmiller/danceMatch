@@ -2,10 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { query } from '../../../../lib/adapter';
 
 const associateSong = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { slug } = req.query;
-  const songId = slug[0];
-  const styleId = slug[1];
   try {
+    const { slug } = req.query;
+    const songId = slug[0];
+    const styleId = slug[1];
     const result = await query(
       `
         INSERT INTO songs_styles (song_id, style_id) values (?,?)

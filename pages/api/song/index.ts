@@ -10,12 +10,14 @@ export interface Song {
 
 const getAllSongs = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    await query(`
-      SELECT * FROM songs;
-    `).then((results) => res.status(200).json(results));
+    const result = await query(
+      `
+        SELECT * FROM songs;
+      `
+    );
+    res.status(200).json(result);
   } catch (error) {
-    console.error(error);
-    res.status(500);
+    res.status(500).json({ message: error.message });
   }
 };
 

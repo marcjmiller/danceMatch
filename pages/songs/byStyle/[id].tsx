@@ -30,7 +30,11 @@ const SongsById = () => {
             {songLoading || styleLoading ? (
               <Spinner />
             ) : (
-              style && <div className='text-xl'>Here are some songs matching <span className='text-blue-400'>{style.name}</span>:</div>
+              style && (
+                <div className='text-xl'>
+                  Here are some songs matching <span className='text-blue-400'>{style.name}</span>:
+                </div>
+              )
             )}
             {foundSongs && style ? (
               <div className=''>

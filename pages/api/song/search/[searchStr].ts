@@ -2,13 +2,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { query } from '../../../../lib/adapter';
 
 const songSearch = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { searchStr } = req.query;
-  const queryStr = [searchStr, '%'].join('');
   try {
+    const { searchStr } = req.query;
+    const queryStr = [searchStr, '%'].join('');
     const result = await query(
       `
-      SELECT * FROM songs WHERE artist LIKE ? OR name LIKE ?;
-    `,
+        SELECT * FROM songs WHERE artist LIKE ? OR name LIKE ?;
+      `,
       [queryStr, queryStr]
     );
     res.status(200).json(result);
