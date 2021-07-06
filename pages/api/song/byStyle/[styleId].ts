@@ -7,7 +7,7 @@ const songsByStyle = async (req: NextApiRequest, res: NextApiResponse) => {
   if (styleId) {
     let filteredSongs = await query(
       `
-      SELECT songs.artist,songs.name 
+      SELECT songs.artist,songs.name,songs.tempo 
       FROM songs 
       JOIN songs_styles 
         ON songs_styles.song_id = songs.id 

@@ -13,7 +13,7 @@ const SongsById = () => {
   const [style, setStyle] = useState({} as DanceStyle);
   const { data: songData, error: songError, loading: songLoading } = fetchFromApi(`/api/song/byStyle/${id}`);
   const { data: styleData, error: styleError, loading: styleLoading } = fetchFromApi(`/api/style/${id}`);
-  const foundSongs = songs.length > 0;
+  const foundSongs = !songLoading && !styleLoading && songs.length > 0;
 
   useEffect(() => {
     styleData && setStyle(styleData[0]);
@@ -30,7 +30,7 @@ const SongsById = () => {
             {songLoading || styleLoading ? (
               <Spinner />
             ) : (
-              style && <div className='text-xl'>Here are some songs matching {style.name}:</div>
+              style && <div className='text-xl'>Here are some songs matching <span className='text-blue-400'>{style.name}</span>:</div>
             )}
             {foundSongs && style ? (
               <div className=''>
