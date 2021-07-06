@@ -13,7 +13,6 @@ export const getDanceSpeed = (bpm: number, dance: DanceStyle) => {
   const minSpeed = dance.avg_bpm - dance.variance;
   const maxSpeed = +dance.avg_bpm + +dance.variance;
 
-  console.log(minSpeed, maxSpeed, bpm);
   if (bpm < minSpeed) {
     return `Slow`;
   } else if (bpm > maxSpeed) {
