@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { query } from '../../../lib/db';
+import { query } from '../../../lib/adapter';
 
 const danceById = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { query } from '../../../lib/db';
+import { query } from '../../../lib/adapter';
 
 export interface DanceStyle {
   id: number;

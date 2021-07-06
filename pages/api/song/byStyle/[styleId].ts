@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { query } from '../../../../lib/db';
+import { query } from '../../../../lib/adapter';
 
 const songsByStyle = async (req: NextApiRequest, res: NextApiResponse) => {
   const { styleId } = req.query;

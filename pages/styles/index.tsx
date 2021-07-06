@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Spinner from '../../components/icons/Spinner';
 import Layout from '../../components/Layout';
 import { fetchFromApi } from '../../utils';
@@ -17,22 +17,35 @@ const GetAllDances = () => {
     const minBpm = Number(dance.avg_bpm) - Number(dance.variance);
     const maxBpm = Number(dance.avg_bpm) + Number(dance.variance);
 
-    return `${dance.name} - ${minBpm}-${maxBpm} BPM, ${dance.avg_bpm} Average BPM`;
+    return (
+      <div className='flex'>
+        <div className='w-1/3'>{dance.name}</div>
+        <div className='w-1/3'>{`${minBpm}-${maxBpm}`}</div>
+        <div className='w-1/3'>{dance.avg_bpm}</div>
+      </div>
+    );
   };
 
   return (
     <Layout>
-      <main>
+      <main className='w-1/2'>
         <div className='text-4xl'>All Dances:</div>
         <div>
           {loading ? (
             <Spinner />
           ) : (
-            <ul>
+            <div className='flex flex-col w-full'>
+              <div className='flex font-bold'>
+                <div className='w-1/3'>Style</div>
+                <div className='w-1/3'>Tempo</div>
+                <div className='w-1/3'>Avg Tempo</div>
+              </div>
               {dances.map((dance) => (
-                <li key={dance.id}>{getDanceInfo(dance)}</li>
+                <div className='' key={dance.id}>
+                  {getDanceInfo(dance)}
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </div>
       </main>

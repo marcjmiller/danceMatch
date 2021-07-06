@@ -1,6 +1,8 @@
+// import mysql from 'serverless-mysql';
+
 import mysql from 'serverless-mysql';
 
-export const db = mysql({
+export const mySqlDb = mysql({
   config: {
     host: process.env.DB_HOST || 'localhost',
     database: process.env.DB_DATABASE || 'DanceMatch',
@@ -12,10 +14,12 @@ export const db = mysql({
 
 export async function query(queryString: string, values: (string | number)[] | string | number = []) {
   try {
-    const results = await db.query(queryString, values);
-    await db.end();
+    const results = await mySqlDb.query(queryString, values);
+    await mySqlDb.end();
     return results;
   } catch (e) {
     throw Error(e.message);
   }
 }
+
+export {};

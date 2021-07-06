@@ -23,3 +23,8 @@ a {
 .input {
   @apply p-1 mx-2 border border-black rounded;
 }
+
+div.category:after {
+  content: '';
+  @apply z-0 flex h-4 w-full text-transparent transform translate-y-1.5 border-t border-black mr-1;
+}

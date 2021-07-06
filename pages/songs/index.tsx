@@ -15,17 +15,26 @@ const GetAllSongs = () => {
 
   return (
     <Layout>
-      <main>
+      <main className='w-1/2'>
         <div className='text-4xl'>All Songs:</div>
-        <div className='flex justify-center'>
+        <div className='flex justify-center w-full'>
           {loading ? (
             <Spinner />
           ) : (
-            <ul>
+            <div className='flex flex-col w-full'>
+              <div className='flex font-bold'>
+                <div className='w-1/3'>Artist</div>
+                <div className='w-1/3'>Song</div>
+                <div className='w-1/3'>Tempo (BPM)</div>
+              </div>
               {songs.map((song) => (
-                <li key={song.id}>{`${song.artist} - ${song.name} - ${song.tempo}BPM`}</li>
+                <div className='flex' key={song.id}>
+                  <div className='w-1/3'>{song.artist}</div>
+                  <div className='w-1/3'>{song.name}</div>
+                  <div className='w-1/3'>{song.tempo} BPM</div>
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </div>
       </main>

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { query } from '../../../lib/db';
+import { query } from '../../../lib/adapter';
 
 const songResolver = async (req: NextApiRequest, res: NextApiResponse) => {
   try {

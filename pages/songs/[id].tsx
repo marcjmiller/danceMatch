@@ -1,5 +1,5 @@
 import { useRouter } from 'next/dist/client/router';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Spinner from '../../components/icons/Spinner';
 import Layout from '../../components/Layout';
 import { fetchFromApi } from '../../utils';

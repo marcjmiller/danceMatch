@@ -1,5 +1,5 @@
 import { useRouter } from 'next/dist/client/router';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Spinner from '../../../components/icons/Spinner';
 import Layout from '../../../components/Layout';
 import { fetchFromApi, getDanceSpeed } from '../../../utils';
@@ -9,10 +9,10 @@ import { DanceStyle } from '../../api/style';
 const SongsById = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { data: styleData, error: styleError, loading: styleLoading } = fetchFromApi(`/api/style/${id}`);
-  const [style, setStyle] = useState({} as DanceStyle);
   const [songs, setSongs] = useState([] as Song[]);
+  const [style, setStyle] = useState({} as DanceStyle);
   const { data: songData, error: songError, loading: songLoading } = fetchFromApi(`/api/song/byStyle/${id}`);
+  const { data: styleData, error: styleError, loading: styleLoading } = fetchFromApi(`/api/style/${id}`);
   const foundSongs = songs.length > 0;
 
   useEffect(() => {
@@ -34,11 +34,20 @@ const SongsById = () => {
             )}
             {foundSongs && style ? (
               <div className=''>
-                <ul>
+                <div className=''>
+                  <div className='flex font-bold'>
+                    <div className='w-1/3'>Artist</div>
+                    <div className='w-1/3'>Song</div>
+                    <div className='w-1/3'>Speed</div>
+                  </div>
                   {songs.map((song, idx) => (
-                    <li key={idx}>{`${song.artist} - ${song.name} - ${getDanceSpeed(song.tempo, style)}`}</li>
+                    <div className='flex' key={idx}>
+                      <div className='w-1/3'>{song.artist}</div>
+                      <div className='w-1/3'>{song.name}</div>
+                      <div className='w-1/3'>{getDanceSpeed(song.tempo, style)}</div>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             ) : (
               !songLoading && <div>No songs found!</div>

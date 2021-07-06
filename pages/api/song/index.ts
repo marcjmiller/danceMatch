@@ -1,12 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { query } from '../../../lib/db';
+import { query } from '../../../lib/adapter';
 
 export interface Song {
   id: number;
   artist: string;
   name: string;
   tempo: number;
-  styles: number[];
 }
 
 const getAllSongs = async (_req: NextApiRequest, res: NextApiResponse) => {
