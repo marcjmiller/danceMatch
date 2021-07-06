@@ -20,7 +20,7 @@ const GetAllDances = () => {
     return (
       <div className='flex'>
         <div className='w-1/3'>{dance.name}</div>
-        <div className='w-1/3'>{`${minBpm}-${maxBpm}`}</div>
+        <div className='w-1/3'>{`${minBpm}-${maxBpm} BPM`}</div>
         <div className='w-1/3'>{dance.avg_bpm}</div>
       </div>
     );
@@ -29,14 +29,14 @@ const GetAllDances = () => {
   return (
     <Layout>
       <main className='w-1/2'>
-        <div className='text-4xl'>All Dances:</div>
+        <div className='text-4xl'>All Styles:</div>
         <div>
           {loading ? (
             <Spinner />
           ) : (
             <div className='flex flex-col w-full'>
               <div className='flex font-bold'>
-                <div className='w-1/3'>Style</div>
+                <div className='w-1/3'>Name</div>
                 <div className='w-1/3'>Tempo</div>
                 <div className='w-1/3'>Avg Tempo</div>
               </div>

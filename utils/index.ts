@@ -10,9 +10,13 @@ export const fetchFromApi = (path: string) => {
 };
 
 export const getDanceSpeed = (bpm: number, dance: DanceStyle) => {
-  if (bpm < dance.avg_bpm - dance.variance) {
+  const minSpeed = dance.avg_bpm - dance.variance;
+  const maxSpeed = +dance.avg_bpm + +dance.variance;
+
+  console.log(minSpeed, maxSpeed, bpm);
+  if (bpm < minSpeed) {
     return `Slow`;
-  } else if (bpm > dance.avg_bpm + dance.variance) {
+  } else if (bpm > maxSpeed) {
     return `Fast`;
   }
   return `Average`;

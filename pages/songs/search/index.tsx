@@ -26,7 +26,7 @@ const Search = () => {
         <div className='flex flex-col items-center'>
           <div className='text-xl'>Find a song</div>
           <div className='flex items-center justify-between w-full py-2'>
-            <label htmlFor='Search'>Search: </label>
+            {/* <label htmlFor='Search'>Search: </label> */}
             <input
               id='Search'
               className='input'
@@ -42,13 +42,13 @@ const Search = () => {
               ))}
             </datalist>
             <div
-              className='p-1 text-center bg-blue-300 rounded shadow-lg cursor-pointer hover:bg-blue-500 hover:text-white active:shadow-none'
+              className='w-10 p-1 text-center bg-blue-300 rounded shadow-lg cursor-pointer hover:bg-blue-500 hover:text-white active:shadow-none'
               onClick={handleGo}
             >
               Go
             </div>
-            <Spinner className={`ml-2 ${loading ? 'opacity-100' : 'opacity-0'}`} />
           </div>
+          <Spinner className={`ml-2 ${loading ? 'opacity-100' : 'opacity-0'}`} />
         </div>
       </main>
     </Layout>
