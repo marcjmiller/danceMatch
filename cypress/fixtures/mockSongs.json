@@ -10,7 +10,7 @@
   {
     "id": 2,
     "artist": "Train",
-    "name": "Marry Me",
+    "name": "Carry Me",
     "tempo": "87",
     "created_at": "2021-06-23T20:52:24.000Z",
     "updated_at": "2021-06-23T20:52:24.000Z"
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "artist": "Camila Cabello",
-    "name": "Liar",
+    "name": "Fryer",
     "tempo": "98",
     "created_at": "2021-06-23T20:52:41.000Z",
     "updated_at": "2021-06-23T20:52:41.000Z"

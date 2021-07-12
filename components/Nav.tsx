@@ -14,7 +14,7 @@ const Nav = () => {
 
   return (
     <div className='absolute inset-y-0 left-0 w-40 p-4 mt-10 navMenu'>
-      <ul className='text-sm nav'>
+      <ul className='text-sm'>
         {navItems.map((navItem, index) =>
           navItem.path ? (
             <li className={index > 0 ? 'ml-2' : ''} key={index}>

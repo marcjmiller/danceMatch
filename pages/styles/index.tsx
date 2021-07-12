@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import Spinner from '../../components/icons/Spinner';
 import Layout from '../../components/Layout';
 import { fetchFromApi } from '../../utils';
@@ -18,8 +19,8 @@ const GetAllDances = () => {
     const maxBpm = Number(dance.avg_bpm) + Number(dance.variance);
 
     return (
-      <div className='flex'>
-        <div className='w-1/3'>{dance.name}</div>
+      <div className='flex style-row'>
+        <div className='w-1/3 text-blue-400 hover:text-blue-500'><Link href={`/songs/byStyle/${dance.id}`}>{dance.name}</Link></div>
         <div className='w-1/3'>{`${minBpm}-${maxBpm} BPM`}</div>
         <div className='w-1/3'>{dance.avg_bpm}</div>
       </div>

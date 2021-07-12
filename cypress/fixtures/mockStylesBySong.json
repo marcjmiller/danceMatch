@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Cha Cha", "avg_bpm": "115", "variance": "5" },
+  { "id": 2, "name": "FoxTrot", "avg_bpm": "115", "variance": "6" },
+  { "id": 3, "name": "Rhumba", "avg_bpm": "96", "variance": "6" },
+  { "id": 4, "name": "West Coast Swing", "avg_bpm": "114", "variance": "14" }
+]

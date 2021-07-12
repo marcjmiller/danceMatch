@@ -22,35 +22,38 @@ const SongDetails = () => {
     styleData && setStyles(styleData);
     error && console.error(error);
     styleError && console.error(styleError);
-  }, [data, error, styleError, styleData]);
+    stylesError && console.error(stylesError);
+  }, [data, error, styleError, stylesError, styleData]);
 
   const getStyles = () => {
     return styles.map((style, idx) => (
-      <div key={idx}>
+      <div className='style' key={idx}>
         {style.name} - {getDanceSpeed(song[0].tempo, style)} speed
       </div>
     ));
   };
 
-  const handleAssociateStyle = (styleId: string) => {
-    fetch(`/api/song/associate/${song[0].id}/${styleId}`);
-    router.push(router.asPath);
+  const handleAssociateStyle = async (styleId: string) => {
+    await fetch(`/api/song/associate/${song[0].id}/${styleId}`);
+    setTimeout(() => {
+      router.reload();
+    }, 1000)
   };
 
   return (
     <Layout>
       <main>
-        {loading || styleLoading ? (
+        {!data || !styleData || loading || styleLoading ? (
           <Spinner />
         ) : (
           <div>
-            <div className='text-xl'>
+            <div className='text-xl styles'>
               Styles for <span className='text-blue-500'>{`${song[0]?.artist} - ${song[0]?.name}`}</span>:
             </div>
-            {styles.length > 0 ? getStyles() : <div>No styles found!</div>}
+            {styles.length > 0 && song[0] ? getStyles() : <div>No styles found!</div>}
             {addingStyle ? (
               <select
-                className='w-full border border-black rounded'
+                className='w-full border border-black rounded style-select'
                 defaultValue=''
                 onChange={({ target: { value } }) => handleAssociateStyle(value)}
               >
@@ -67,7 +70,7 @@ const SongDetails = () => {
             ) : (
               <div
                 onClick={() => setAddingStyle(!addingStyle)}
-                className='p-1 mt-2 text-center bg-blue-300 rounded shadow-lg cursor-pointer select-none hover:bg-blue-500 hover:text-white active:shadow-none'
+                className='mt-2 button'
               >
                 Add Style
               </div>

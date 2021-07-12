@@ -53,7 +53,7 @@ const AddSong = () => {
           <input
             id='artist'
             name='artist'
-            className='input'
+            className='input artist'
             placeholder='Artist'
             value={song.artist}
             onChange={onChange}
@@ -62,14 +62,14 @@ const AddSong = () => {
         </div>
         <div className='flex items-center justify-between w-full py-2'>
           <label htmlFor='name'>Name: </label>
-          <input id='name' name='name' className='input' placeholder='Name' value={song.name} onChange={onChange} />
+          <input id='name' name='name' className='input name' placeholder='Name' value={song.name} onChange={onChange} />
         </div>
         <div className='flex items-center justify-between w-full py-2'>
           <label htmlFor='tempo'>Tempo: </label>
-          <input id='tempo' name='tempo' type='number' className='input' value={song.tempo} onChange={onChange} />
+          <input id='tempo' name='tempo' type='number' className='input tempo' value={song.tempo} onChange={onChange} />
         </div>
         <div
-          className='w-40 p-1 mt-2 text-center bg-blue-300 rounded shadow-lg cursor-pointer hover:bg-blue-500 hover:text-white active:shadow-none'
+          className='w-40 mt-2 button'
           onClick={handleSubmitSong}
         >
           {submitting ? (

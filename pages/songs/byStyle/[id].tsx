@@ -45,7 +45,7 @@ const SongsById = () => {
                     <div className='w-1/3'>Speed</div>
                   </div>
                   {songs.map((song, idx) => (
-                    <div className='flex' key={idx}>
+                    <div className='flex song-row' key={idx}>
                       <div className='w-1/3'>{song.artist}</div>
                       <div className='w-1/3'>{song.name}</div>
                       <div className='w-1/3'>{getDanceSpeed(song.tempo, style)}</div>

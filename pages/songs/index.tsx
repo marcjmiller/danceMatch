@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Spinner from '../../components/icons/Spinner';
 import Layout from '../../components/Layout';
@@ -28,9 +29,11 @@ const GetAllSongs = () => {
                 <div className='w-1/3'>Tempo (BPM)</div>
               </div>
               {songs.map((song) => (
-                <div className='flex' key={song.id}>
+                <div className='flex song-row' key={song.id}>
                   <div className='w-1/3'>{song.artist}</div>
-                  <div className='w-1/3'>{song.name}</div>
+                  <div className='w-1/3 text-blue-400 hover:text-blue-500'>
+                    <Link href={`/songs/${song.id}`}>{song.name}</Link>
+                  </div>
                   <div className='w-1/3'>{song.tempo} BPM</div>
                 </div>
               ))}
