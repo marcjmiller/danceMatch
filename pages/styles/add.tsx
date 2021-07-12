@@ -1,34 +1,62 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Spinner from '../../components/icons/Spinner';
 import Layout from '../../components/Layout';
 
 const AddStyle = () => {
-  const [name, setName] = useState('');
-  const [avgBpm, setAvgBpm] = useState(0);
-  const [variance, setVariance] = useState(0);
+  const [style, setStyle] = useState({
+    name: '',
+    avgBpm: 0,
+    variance: 0,
+  });
   const [submitting, setSubmitting] = useState(false);
+  const isFormValid = style.name !== '' && style.avgBpm > 0;
 
   const resetForm = () => {
-    setName('');
-    setAvgBpm(0);
-    setVariance(0);
+    setStyle({
+      name: '',
+      avgBpm: 0,
+      variance: 0,
+    });
   };
 
   const handleSubmitDance = async () => {
-    setSubmitting(true);
-    try {
-      const res = await fetch('/api/dance/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, avgBpm, variance }),
-      });
-      setSubmitting(false);
-      if (res.ok) {
-        resetForm();
+    if (isFormValid) {
+      setSubmitting(true);
+      try {
+        const { name, avgBpm, variance } = style;
+        const res = await fetch('/api/dance/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, avgBpm, variance }),
+        });
+        setSubmitting(false);
+        if (res.ok) {
+          resetForm();
+          setSubmitting(true);
+          try {
+            const { name, avgBpm, variance } = style;
+            const res = await fetch('/api/dance/add', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name, avgBpm, variance }),
+            });
+            setSubmitting(false);
+            if (res.ok) {
+              resetForm();
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
+  };
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+    setStyle((prevState) => ({ ...prevState, [name]: value }));
   };
 
   return (
@@ -39,31 +67,27 @@ const AddStyle = () => {
           <label htmlFor='name'>Name: </label>
           <input
             id='name'
-            className='p-1 border border-black rounded'
+            name='name'
+            className='input'
             placeholder='Name'
-            value={name}
-            onChange={({ target: { value } }) => setName(value.toString())}
+            value={style.name}
+            onChange={onChange}
             autoFocus
           />
         </div>
         <div className='flex items-center justify-between w-full py-2'>
-          <label htmlFor='bpm'>Avg BPM: </label>
-          <input
-            id='bpm'
-            type='number'
-            className='p-1 border border-black rounded'
-            value={avgBpm}
-            onChange={({ target: { value } }) => setAvgBpm(+value)}
-          />
+          <label htmlFor='avgBpm'>Avg BPM: </label>
+          <input id='avgBpm' name='avgBpm' type='number' className='input' value={style.avgBpm} onChange={onChange} />
         </div>
         <div className='flex items-center justify-between w-full py-2'>
           <label htmlFor='variance'>Variance: </label>
           <input
             id='variance'
+            name='variance'
             type='number'
-            className='p-1 border border-black rounded'
-            value={variance}
-            onChange={({ target: { value } }) => setVariance(+value)}
+            className='input'
+            value={style.variance}
+            onChange={onChange}
           />
         </div>
         <div

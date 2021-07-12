@@ -2,6 +2,7 @@ import useSWR from 'swr';
 import { DanceStyle } from '../pages/api/style';
 
 export const fetchFromApi = (path: string) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, error } = useSWR(path, fetcher);
   const loading = !data && !error;
 
@@ -9,12 +10,15 @@ export const fetchFromApi = (path: string) => {
 };
 
 export const getDanceSpeed = (bpm: number, dance: DanceStyle) => {
-  if (bpm < dance.avg_bpm - dance.variance) {
-    return `Slow ${dance.name}`;
-  } else if (bpm > dance.avg_bpm + dance.variance) {
-    return `Fast ${dance.name}`;
+  const minSpeed = dance.avg_bpm - dance.variance;
+  const maxSpeed = +dance.avg_bpm + +dance.variance;
+
+  if (bpm < minSpeed) {
+    return `Slow`;
+  } else if (bpm > maxSpeed) {
+    return `Fast`;
   }
-  return `Average ${dance.name}`;
+  return `Average`;
 };
 
 export const fetcher = (url: string) => fetch(url).then((res) => res.json());

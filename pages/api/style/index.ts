@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { query } from '../../../lib/db';
+import { query } from '../../../lib/adapter';
 
 export interface DanceStyle {
   id: number;
@@ -10,12 +10,14 @@ export interface DanceStyle {
 
 const getAllStyles = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    await query(`
-    SELECT * FROM styles;
-  `).then((results) => res.status(200).json(results));
+    const result = await query(
+      `
+        SELECT * FROM styles;
+      `
+    );
+    res.status(200).json(result);
   } catch (error) {
-    console.error(error);
-    res.status(500);
+    res.status(500).json({ message: error.message });
   }
 };
 

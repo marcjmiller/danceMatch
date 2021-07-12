@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Spinner from '../../components/icons/Spinner';
 import Layout from '../../components/Layout';
 import { fetchFromApi } from '../../utils';
 import { Song } from '../api/song';
@@ -14,17 +16,28 @@ const GetAllSongs = () => {
 
   return (
     <Layout>
-      <main>
+      <main className='w-1/2'>
         <div className='text-4xl'>All Songs:</div>
-        <div className='flex justify-center'>
+        <div className='flex justify-center w-full'>
           {loading ? (
-            <span>loading</span>
+            <Spinner />
           ) : (
-            <ul>
+            <div className='flex flex-col w-full'>
+              <div className='flex font-bold'>
+                <div className='w-1/3'>Artist</div>
+                <div className='w-1/3'>Song</div>
+                <div className='w-1/3'>Tempo (BPM)</div>
+              </div>
               {songs.map((song) => (
-                <li key={song.id}>{`${song.artist} - ${song.name} - ${song.tempo}BPM`}</li>
+                <div className='flex song-row' key={song.id}>
+                  <div className='w-1/3'>{song.artist}</div>
+                  <div className='w-1/3 text-blue-400 hover:text-blue-500'>
+                    <Link href={`/songs/${song.id}`}>{song.name}</Link>
+                  </div>
+                  <div className='w-1/3'>{song.tempo} BPM</div>
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </div>
       </main>

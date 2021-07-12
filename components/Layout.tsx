@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Footer from './Footer';
 import Header from './Header';
 

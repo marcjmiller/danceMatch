@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/dist/client/router';
 import Nav from './Nav';

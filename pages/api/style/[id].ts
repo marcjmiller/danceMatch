@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { query } from '../../../lib/db';
+import { query } from '../../../lib/adapter';
 
 const danceById = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { id } = req.query;
   try {
+    const { id } = req.query;
     const result = await query(
       `
-      SELECT * from styles where id = ?
-    `,
+        SELECT * from styles where id = ?
+      `,
       id
     );
     res.status(200).json(result);
