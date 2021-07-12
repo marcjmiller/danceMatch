@@ -23,7 +23,7 @@ const Home = () => {
           <select
             onChange={({ target: { value } }) => router.push(`/songs/byStyle/${value}`)}
             required
-            className='ml-2 border border-black rounded w-44'
+            className='input w-44'
             defaultValue=''
           >
             <option value='' hidden disabled>
