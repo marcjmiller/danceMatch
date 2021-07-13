@@ -6,7 +6,7 @@ stages:
 
 app tests:
   stage: app-test
-  image: node:alpine
+  image: node:current
   script:
     - npm ci
     - npm run lint
