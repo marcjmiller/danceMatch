@@ -1,25 +1,19 @@
 stages:
-  - install-deps
   - app-test
   - image-build
   - image-tag-main
   - image-tag-develop
 
-install deps:
-  stage: install-deps
-  image: node:alpine
-  script:
-    - npm ci
-  cache:
-    paths:
-      - node_modules
-
 app tests:
   stage: app-test
   image: node:alpine
   script:
+    - npm ci
     - npm run lint
     - npm test
+  cache:
+    paths:
+      - node_modules
   artifacts:
     paths:
       - cypress/videos
