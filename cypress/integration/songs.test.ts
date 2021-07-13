@@ -52,7 +52,6 @@ context('Songs', () => {
       .contains(/add style/i)
       .click();
     cy.get('.style-select').select('1');
-    // cy.get('select').select('1');
   });
 
   it('should be able to navigate and add a song', () => {
@@ -60,10 +59,8 @@ context('Songs', () => {
     cy.get('.navMenu')
       .contains(/add a song/i)
       .click();
-    cy.wait(1000);
 
-    cy.get('main')
-      .children()
+    cy.get('.add-label')
       .contains(/add a song:/i);
     cy.get('.artist').type('Chris Janson');
     cy.get('.name').type('Buy Me a Boat');

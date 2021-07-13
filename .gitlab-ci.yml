@@ -31,8 +31,8 @@ app test:
     - npm test
   artifacts:
     paths:
-      - cypress/videos
-      - cypress/screenshots
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
     expire_in: 1 day
 
 image build:
