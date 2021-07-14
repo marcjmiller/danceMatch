@@ -16,7 +16,7 @@
 /build
 
 # misc
-.DS_Store
+.DS_*
 *.pem
 
 # debug
@@ -33,6 +33,8 @@ yarn-error.log*
 # vercel
 .vercel
 
-# cypress videos
-/cypress/videos
-/cypress/screenshots
+# CypressIO
+cypress/results/*
+cypress/reports/*
+cypress/screenshots/*
+cypress/videos/*
