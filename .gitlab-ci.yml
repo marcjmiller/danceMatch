@@ -61,7 +61,7 @@ tag main:
   variables: 
     GIT_STRATEGY: none
   stage: image-tag
-  image: docker:20
+  image: docker:dind
   only:
     - main
   script:
@@ -75,7 +75,7 @@ tag develop:
   variables: 
     GIT_STRATEGY: none
   stage: image-tag
-  image: docker:20
+  image: docker:dind
   only:
     - develop
   script:
