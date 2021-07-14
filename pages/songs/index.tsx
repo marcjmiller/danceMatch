@@ -22,7 +22,7 @@ const GetAllSongs = () => {
           {loading ? (
             <Spinner />
           ) : (
-            <div className='flex flex-col w-full'>
+            <div className='flex flex-col w-full songs'>
               <div className='flex font-bold'>
                 <div className='w-1/3'>Artist</div>
                 <div className='w-1/3'>Song</div>

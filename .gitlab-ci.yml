@@ -2,8 +2,8 @@ stages:
   - install
   - test
   - image-build
-  - image-tag-main
-  - image-tag-develop
+  - image-tag
+  - image-tag
 
 variables:
   npm_config_cache: '$CI_PROJECT_DIR/.npm'
@@ -22,13 +22,15 @@ app install:
   image: cypress/browsers:node14.17.0-chrome91-ff89
   script:
     - npm ci
+    - $(npm bin)/cypress cache path
+    - $(npm bin)/cypress cache list
+    - $(npm bin)/cypress verify
 
 app test:
   stage: test
   image: cypress/browsers:node14.17.0-chrome91-ff89
   script:
     - npm ci
-    - npm test
   artifacts:
     when: always
     paths:
@@ -58,7 +60,7 @@ image build:
 tag main:
   variables: 
     GIT_STRATEGY: none
-  stage: image-tag-main
+  stage: image-tag
   image: docker:20
   only:
     - main
@@ -72,7 +74,7 @@ tag main:
 tag develop:
   variables: 
     GIT_STRATEGY: none
-  stage: image-tag-develop
+  stage: image-tag
   image: docker:20
   only:
     - develop

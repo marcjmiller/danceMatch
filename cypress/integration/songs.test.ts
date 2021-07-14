@@ -15,6 +15,7 @@ context('Songs', () => {
     cy.get('.header').contains(/home/i);
     cy.get('main').contains(/all songs/i);
 
+    cy.get('.songs').find('.song-row').its('length').should('eq', 3)
     cy.get('.song-row')
       .children()
       .contains(/maroon 55/i);
