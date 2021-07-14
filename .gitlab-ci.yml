@@ -1,0 +1,86 @@
+stages:
+  - install
+  - test
+  - image-build
+  - image-tag
+  - image-tag
+
+variables:
+  npm_config_cache: '$CI_PROJECT_DIR/.npm'
+  CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cache/Cypress'
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .cache/*
+    - cache/Cypress
+    - node_modules
+    - .next
+
+app install:
+  stage: install
+  image: cypress/browsers:node14.17.0-chrome91-ff89
+  script:
+    - npm ci
+    - $(npm bin)/cypress cache path
+    - $(npm bin)/cypress cache list
+    - $(npm bin)/cypress verify
+
+app test:
+  stage: test
+  image: cypress/browsers:node14.17.0-chrome91-ff89
+  script:
+    - npm ci
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos
+      - cypress/screenshots
+    expire_in: 1 day
+
+image build:
+  stage: image-build
+  image: docker:20
+  services:
+    - docker:dind
+  script:
+    - docker info
+    - echo -n $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - >
+      docker build
+      --pull
+      --build-arg VCS_REF=$CI_COMMIT_SHA
+      --build-arg VCS_URL=$CI_PROJECT_URL
+      --cache-from $CI_REGISTRY_IMAGE:latest
+      --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+      .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+
+tag main:
+  variables: 
+    GIT_STRATEGY: none
+  stage: image-tag
+  image: docker:20
+  only:
+    - main
+  script:
+    - docker info
+    - echo -n $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:latest
+
+tag develop:
+  variables: 
+    GIT_STRATEGY: none
+  stage: image-tag
+  image: docker:20
+  only:
+    - develop
+  script:
+    - docker info
+    - echo -n $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:dev
+    - docker push $CI_REGISTRY_IMAGE:dev

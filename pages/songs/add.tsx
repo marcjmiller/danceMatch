@@ -47,7 +47,7 @@ const AddSong = () => {
   return (
     <Layout>
       <main className='flex flex-col items-center w-auto' onKeyDown={(e) => e.key === 'Enter' && handleSubmitSong}>
-        <div className='text-2xl'>Add a Song:</div>
+        <div className='text-2xl add-label'>Add a Song:</div>
         <div className='flex items-center justify-between w-full py-2'>
           <label htmlFor='artist'>Artist: </label>
           <input
